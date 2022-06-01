@@ -1,4 +1,4 @@
-sound = "";
+music = "";
 
 function setup() {
     canvas = createCanvas(600, 500);
@@ -8,7 +8,7 @@ function setup() {
 }
 
 function preload() {
-    sound = loadSound("music.mp3");
+    music = loadSound("music.mp3");
 }
 
 function draw() {
@@ -16,9 +16,9 @@ function draw() {
 }
 
 function play() {
-    sound.play();
+    music.play();
 }
 
 function stop() {
-    sound.stop();
+    music.stop();
 }
