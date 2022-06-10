@@ -4,6 +4,7 @@ leftWristY = "";
 rightWristX = "";
 rightWristY = "";
 leftWristScore = "";
+rightWristScore = "";
 
 function setup() {
     canvas = createCanvas(600, 500);
@@ -42,6 +43,7 @@ function gotposes(result) {
         console.log("Left WristX: " + leftWristX + " Left WristY: " + leftWristY);
         console.log("Right WirstX: " + rightWristX + " Right WristY: " + rightWristY);
         leftWristScore = result[0].pose.keypoints[9].score;
+        rightWristScore = result[0].pose.keypoints[10].score;
     }
 }
 
@@ -55,5 +57,30 @@ function draw() {
         volume = floor_lwy / 500;
         music.setVolume(volume);
         document.getElementById("music_volume").innerHTML = volume;
+    }
+    if (rightWristScore > 0.2) {
+        circle(rightWristX, rightWristY, 20);
+        number_rwy = Number(rightWristY);
+        floor_rwy = floor(number_rwy);
+        if (floor_rwy > 0 && floor_rwy <= 100) {
+            music.rate(0.5);
+            document.getElementById("music_speed").innerHTML = "0.5x";
+        }
+        if (floor_rwy > 100 && floor_rwy <= 200) {
+            music.rate(1);
+            document.getElementById("music_speed").innerHTML = "1x";
+        }
+        if (floor_rwy > 200 && floor_rwy <= 300) {
+            music.rate(1.5);
+            document.getElementById("music_speed").innerHTML = "1.5x";
+        }
+        if (floor_rwy > 300 && floor_rwy <= 400) {
+            music.rate(2);
+            document.getElementById("music_speed").innerHTML = "2x";
+        }
+        if (floor_rwy > 400 && floor_rwy <= 500) {
+            music.rate(2.5);
+            document.getElementById("music_speed").innerHTML = "2.5x";
+        }
     }
 }
